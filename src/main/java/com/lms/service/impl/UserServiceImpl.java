@@ -53,9 +53,9 @@ public class UserServiceImpl implements UserService {
 	public UserResponse updateUser(UserResponse userResponse, Long id) {
 		User user = userRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("User not found with id " + id));
-		user.setName(user.getName());
-		user.setEmail(user.getEmail());
-		user.setPassword(user.getPassword());
+		user.setName(userResponse.getName());
+		user.setEmail(userResponse.getEmail());
+		user.setPassword(userResponse.getPassword());
 
 		User savedUser = userRepository.save(user);
 		return modelMapper.map(savedUser, UserResponse.class);
